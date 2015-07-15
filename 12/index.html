@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Atomy, kapitola 12</title>
+	</head>
+
+	<body>
+		<script src="xy.js"></script>
+		<script src="game.js"></script>
+		<script src="draw.js"></script>
+		<script src="player.js"></script>
+		<script src="player.human.js"></script>
+		<script src="player.ai.js"></script>
+		<script src="board.js"></script>
+
+		<script>
+			new Game([
+				new Player.Human("Pan Novák", "blue"),
+				new Player.AI("Robot Emil", "red")
+			]);
+		</script>
+	</body>
+</html>

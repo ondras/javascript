@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Atomy, kapitola 18</title>
+	</head>
+
+	<body>
+		<script src="https://cdn.firebase.com/js/client/2.1.2/firebase.js"></script>
+		<script src="xy.js"></script>
+		<script src="game.js"></script>
+		<script src="draw.js"></script>
+		<script src="player.js"></script>
+		<script src="player.human.js"></script>
+		<script src="player.ai.js"></script>
+		<script src="player.remote.js"></script>
+		<script src="board.js"></script>
+
+		<script>
+			new Game([
+				null,
+				new Player.Human("Pan Horák", "red")
+			]);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Atomy, kapitola 14</title>
+	</head>
+
+	<body>
+		<script src="xy.js"></script>
+		<script src="game.js"></script>
+		<script src="draw.js"></script>
+		<script src="player.js"></script>
+		<script src="player.human.js"></script>
+		<script src="player.ai.js"></script>
+		<script src="board.js"></script>
+
+		<p>
+			<button id="start">Start</button>
+			<button id="load">Load</button>
+		</p>
+
+		<script>
+			var start = document.querySelector("#start");
+			var load = document.querySelector("#load");
+			var game = new Game();
+			
+			if (!game.canContinue()) { load.disabled = true; }
+			
+			start.addEventListener("click", function() {
+				game.start([
+					new Player.Human("Pan Novák", "blue"),
+					new Player.AI("Robot Emil", "red")
+				]);
+			});
+			
+			load.addEventListener("click", function() {
+				game.load();
+			});
+		</script>
+	</body>
+</html>
