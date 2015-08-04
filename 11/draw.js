@@ -20,10 +20,10 @@ var Draw = {
 /* Výroba canvasu a jeho příprava */
 Draw.init = function() {
 	var canvas = document.createElement("canvas");
-	
+
 	this.CELL += this.LINE;
 
-	var size = Game.SIZE * this.CELL + this.LINE;		
+	var size = Game.SIZE * this.CELL + this.LINE;
 	canvas.width = size;
 	canvas.height = size;
 
@@ -50,11 +50,11 @@ Draw.cell = function(xy) {
 
 	this._context.fillStyle = "#fff";
 	this._context.fillRect(leftTop.x, leftTop.y, size, size);
-	
+
 	/* zjistit počet atomů */
 	var count = Board.getAtoms(xy);
 	if (!count) { return; }
-	
+
 	/* zjistit hráče (barvu) */
 	var player = Board.getPlayer(xy);
 	var color = Score.getColor(player);
@@ -72,10 +72,10 @@ Draw.cell = function(xy) {
 /* Převod pozice kurzoru na souřadnice buňky */
 Draw.getPosition = function(cursor) {
 	var rectangle = this._context.canvas.getBoundingClientRect();
-	
+
 	cursor.x -= rectangle.left;
 	cursor.y -= rectangle.top;
-	
+
 	if (cursor.x < 0 || cursor.x > rectangle.width) { return null; }
 	if (cursor.y < 0 || cursor.y > rectangle.height) { return null; }
 
@@ -88,7 +88,7 @@ Draw._atom = function(xy, color) {
 
 	this._context.moveTo(xy.x+this.ATOM, xy.y);
 	this._context.arc(xy.x, xy.y, this.ATOM, 0, 2*Math.PI, false);
-	
+
 	this._context.fillStyle = color;
 	this._context.fill();
 	this._context.stroke();

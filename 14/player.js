@@ -32,10 +32,10 @@ Player.prototype.getState = function() {
 		name: this._name,
 		color: this._color
 	};
-	
+
 	for (var p in Player) {
 		if (this instanceof Player[p]) { state.type = p; }
 	}
-	
+
 	return state;
 }

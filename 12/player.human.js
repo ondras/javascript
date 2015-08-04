@@ -16,6 +16,6 @@ Player.Human.prototype.handleEvent = function(e) {
 	if (!position) { return; }
 
 	document.body.removeEventListener("click", this);
-	
+
 	this._callback(position);
 }

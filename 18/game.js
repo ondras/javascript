@@ -4,11 +4,11 @@ var Game = function(players) {
 
 	var url = "https://atomy.firebaseio.com/hra123";
 	this._firebase = new Firebase(url);
-	
+
 	for (var i=0; i<players.length; i++) {
 		var player = players[i];
 		if (!player) { continue; }
-		
+
 		var data = {
 			name: player.getName(),
 			color: player.getColor()
@@ -49,7 +49,7 @@ Game.prototype._turnDone = function() {
 	var scores = [];
 
 	for (var i=0; i<this._players.length; i++) {
-		var player = this._players[i]; 
+		var player = this._players[i];
 		var score = this._board.getScoreFor(player);
 		player.setScore(score);
 		scores.push(score);
@@ -58,7 +58,7 @@ Game.prototype._turnDone = function() {
 	if (Game.isOver(scores)) { /* konec hry! */
 		this._firebase.remove();
 		return;
-	} 
+	}
 
 	this._currentPlayer = (this._currentPlayer+1) % this._players.length;
 	this._askPlayer();
@@ -74,11 +74,11 @@ Game.prototype._onFirebaseChange = function(snapshot) {
 		p = Number(p);
 		if (this._players[p]) { continue; }
 
-		var def = data[p]; 
+		var def = data[p];
 		var firebase = this._firebase.child(p);
 		var player = new Player.Remote(def.name, def.color, firebase);
 		this._players[p] = player;
-	} 
+	}
 
 	/* dokončit initializaci */
 	this._draw = new Draw();

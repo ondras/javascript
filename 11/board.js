@@ -8,7 +8,7 @@ Board.init = function() {
 	for (var i=0; i<Game.SIZE; i++) {
 		for (var j=0; j<Game.SIZE; j++) {
 			var xy = new XY(i, j);
-			var limit = this._getLimit(xy);			
+			var limit = this._getLimit(xy);
 			var cell = {
 				atoms: 0,
 				limit: limit,
@@ -30,7 +30,7 @@ Board.getPlayer = function(xy) {
 Board.addAtom = function(xy, player) {
 	this._addAndCheck(xy, player);
 
-	if (Score.isGameOver()) { 
+	if (Score.isGameOver()) {
 		return;
 	} else if (this._criticals.length) {
 		Player.stopListening();
@@ -40,10 +40,10 @@ Board.addAtom = function(xy, player) {
 
 Board._addAndCheck = function(xy, player) {
 	var cell = this._data[xy];
-	
+
 	Score.removePoint(cell.player);
 	Score.addPoint(player);
-	
+
 	cell.atoms++;
 	cell.player = player;
 
@@ -55,26 +55,26 @@ Board._addAndCheck = function(xy, player) {
 			var tmp = this._criticals[i];
 			if (tmp.equals(xy)) { return; }
 		}
-		
+
 		/* není, přidáme */
-		this._criticals.push(xy); 
+		this._criticals.push(xy);
 	}
 }
 
 Board._explode = function() {
 	var xy = this._criticals.shift();
 	var cell = this._data[xy];
-	
+
 	var neighbors = xy.getNeighbors();
 	cell.atoms -= neighbors.length;
 	Draw.cell(xy);
-		
+
 	for (var i=0; i<neighbors.length; i++) {
 		this._addAndCheck(neighbors[i], cell.player);
 	}
-	
-	if (Score.isGameOver()) { 
-		return; 
+
+	if (Score.isGameOver()) {
+		return;
 	} else if (this._criticals.length) {
 		setTimeout(this._explode.bind(this), this.DELAY);
 	} else {

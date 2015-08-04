@@ -8,7 +8,7 @@ Board.init = function() {
 	for (var i=0; i<Game.SIZE; i++) {
 		this._data.push([]);
 		for (var j=0; j<Game.SIZE; j++) {
-			var limit = this._getLimit(i, j);			
+			var limit = this._getLimit(i, j);
 			var cell = {
 				atoms: 0,
 				limit: limit,
@@ -30,7 +30,7 @@ Board.getPlayer = function(x, y) {
 Board.addAtom = function(x, y, player) {
 	this._addAndCheck(x, y, player);
 
-	if (Score.isGameOver()) { 
+	if (Score.isGameOver()) {
 		return;
 	} else if (this._criticals.length) {
 		Player.stopListening();
@@ -40,10 +40,10 @@ Board.addAtom = function(x, y, player) {
 
 Board._addAndCheck = function(x, y, player) {
 	var cell = this._data[x][y];
-	
+
 	Score.removePoint(cell.player);
 	Score.addPoint(player);
-	
+
 	cell.atoms++;
 	cell.player = player;
 
@@ -55,9 +55,9 @@ Board._addAndCheck = function(x, y, player) {
 			var tmp = this._criticals[i];
 			if (tmp[0] == x && tmp[1] == y) { return; }
 		}
-		
+
 		/* není, přidáme */
-		this._criticals.push([x, y]); 
+		this._criticals.push([x, y]);
 	}
 }
 
@@ -66,19 +66,19 @@ Board._explode = function() {
 	var x = pair[0];
 	var y = pair[1];
 	var cell = this._data[x][y];
-	
+
 	var neighbors = this._getNeighbors(x, y);
 	cell.atoms -= neighbors.length;
 	Draw.cell(x, y);
-		
+
 	for (var i=0; i<neighbors.length; i++) {
 		var n = neighbors[i];
 		/* třetí parametr = nový vlastník buňky */
 		this._addAndCheck(n[0], n[1], cell.player);
 	}
-	
-	if (Score.isGameOver()) { 
-		return; 
+
+	if (Score.isGameOver()) {
+		return;
 	} else if (this._criticals.length) {
 		setTimeout(this._explode.bind(this), this.DELAY);
 	} else {

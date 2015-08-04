@@ -1,7 +1,7 @@
 var Game = function(players) {
 	this._players = players;
 	this._currentPlayer = 0;
-	
+
 	this._draw = new Draw();
 
 	this._board = new Board(players, this._draw);
@@ -24,7 +24,7 @@ Game.prototype._playerDone = function(xy) {
 	var player = this._players[this._currentPlayer];
 	var existing = this._board.getPlayer(xy);
 
-	if (!existing || existing == player) { 
+	if (!existing || existing == player) {
 		this._board.addAtom(xy, player);
 	} else {
 		this._askPlayer();
@@ -35,7 +35,7 @@ Game.prototype._turnDone = function() {
 	var scores = [];
 
 	for (var i=0; i<this._players.length; i++) {
-		var player = this._players[i]; 
+		var player = this._players[i];
 		var score = this._board.getScoreFor(player);
 		player.setScore(score);
 		scores.push(score);

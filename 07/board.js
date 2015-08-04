@@ -6,7 +6,7 @@ Board.init = function() {
 	for (var i=0; i<Game.SIZE; i++) {
 		this._data.push([]);
 		for (var j=0; j<Game.SIZE; j++) {
-			var limit = this._getLimit(i, j);			
+			var limit = this._getLimit(i, j);
 			var cell = {
 				atoms: 0,
 				limit: limit
@@ -23,11 +23,11 @@ Board.getAtoms = function(x, y) {
 Board.addAtom = function(x, y) {
 	var cell = this._data[x][y];
 	cell.atoms++;
-	
+
 	if (cell.atoms > cell.limit) {
 		var neighbors = this._getNeighbors(x, y);
 		cell.atoms -= neighbors.length;
-			
+
 		for (var i=0; i<neighbors.length; i++) {
 			var n = neighbors[i];
 			this.addAtom(n[0], n[1]);

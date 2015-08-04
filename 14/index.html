@@ -23,16 +23,16 @@
 			var start = document.querySelector("#start");
 			var load = document.querySelector("#load");
 			var game = new Game();
-			
+
 			if (!game.canContinue()) { load.disabled = true; }
-			
+
 			start.addEventListener("click", function() {
 				game.start([
 					new Player.Human("Pan Novák", "blue"),
 					new Player.AI("Robot Emil", "red")
 				]);
 			});
-			
+
 			load.addEventListener("click", function() {
 				game.load();
 			});

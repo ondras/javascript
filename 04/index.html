@@ -9,7 +9,7 @@
 		<table></table>
 
 		<style>
-			td { 
+			td {
 				border: 1px solid black;
 				width: 60px;
 				height: 60px;
@@ -20,7 +20,7 @@
 
 		<script>
 			var table = document.querySelector("table");
-			
+
 			for (var i=0; i<6; i++) {
 				var row = document.createElement("tr");
 
@@ -28,7 +28,7 @@
 					var cell = document.createElement("td");
 					row.appendChild(cell);
 				}
-				
+
 				table.appendChild(row);
 			}
 
