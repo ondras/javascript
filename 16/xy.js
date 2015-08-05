@@ -1,7 +1,7 @@
 describe("XY", function() {
 	it("should use zero as a default value", function() {
 		var xy = new XY();
-		
+
 		expect(xy.x).toBe(0);
 		expect(xy.y).toBe(0);
 	});

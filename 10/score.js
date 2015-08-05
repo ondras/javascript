@@ -29,7 +29,7 @@ Score.isGameOver = function() {
 
 Score.removePoint = function(player) {
 	if (player == -1) { return; }
-	
+
 	var obj = this._players[player];
 	obj.score--;
 	obj.node.innerHTML = obj.score;
@@ -39,7 +39,7 @@ Score.addPoint = function(player) {
 	var obj = this._players[player];
 	obj.score++;
 	obj.node.innerHTML = obj.score;
-	
+
 	if (obj.score == Game.SIZE * Game.SIZE) {
 		Player.stopListening();
 		this._gameOver = true;
@@ -56,7 +56,7 @@ Score.init = function() {
 		p.style.color = obj.color;
 		p.appendChild(document.createTextNode(obj.name + ": "));
 		p.appendChild(obj.node);
-		
+
 		document.body.appendChild(p);
 	}
 }

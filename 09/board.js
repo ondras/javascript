@@ -8,7 +8,7 @@ Board.init = function() {
 	for (var i=0; i<Game.SIZE; i++) {
 		this._data.push([]);
 		for (var j=0; j<Game.SIZE; j++) {
-			var limit = this._getLimit(i, j);			
+			var limit = this._getLimit(i, j);
 			var cell = {
 				atoms: 0,
 				limit: limit
@@ -43,9 +43,9 @@ Board._addAndCheck = function(x, y) {
 			var tmp = this._criticals[i];
 			if (tmp[0] == x && tmp[1] == y) { return; }
 		}
-		
+
 		/* není, přidáme */
-		this._criticals.push([x, y]); 
+		this._criticals.push([x, y]);
 	}
 }
 
@@ -54,16 +54,16 @@ Board._explode = function() {
 	var x = pair[0];
 	var y = pair[1];
 	var cell = this._data[x][y];
-	
+
 	var neighbors = this._getNeighbors(x, y);
 	cell.atoms -= neighbors.length;
 	Draw.cell(x, y);
-		
+
 	for (var i=0; i<neighbors.length; i++) {
 		var n = neighbors[i];
 		this._addAndCheck(n[0], n[1]);
 	}
-	
+
 	if (this._criticals.length) {
 		setTimeout(this._explode.bind(this), this.DELAY);
 	} else {

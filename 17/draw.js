@@ -15,12 +15,12 @@ var Draw = function() {
 
 	/* Výroba canvasu a jeho příprava */
 	var canvas = document.createElement("canvas");
-	var size = Game.SIZE * this.CELL + this.LINE;		
+	var size = Game.SIZE * this.CELL + this.LINE;
 	canvas.width = size;
 	canvas.height = size;
 	document.body.appendChild(canvas);
 
-	this._context = canvas.getContext("webgl") 
+	this._context = canvas.getContext("webgl")
 		|| canvas.getContext("experimental-webgl");
 
 	this._program = this._createShaderProgram();
@@ -60,10 +60,10 @@ Draw.prototype.all = function(board) {
 /* Převod pozice kurzoru na souřadnice buňky */
 Draw.prototype.getPosition = function(cursor) {
 	var rectangle = this._context.canvas.getBoundingClientRect();
-	
+
 	cursor.x -= rectangle.left;
 	cursor.y -= rectangle.top;
-	
+
 	if (cursor.x < 0 || cursor.x > rectangle.width) { return null; }
 	if (cursor.y < 0 || cursor.y > rectangle.height) { return null; }
 

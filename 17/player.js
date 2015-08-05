@@ -3,7 +3,7 @@ var Player = function(name, color) {
 	this._score = document.createElement("span");
 
 	var node = document.createElement("p");
-	node.style.color = "rgb(" 
+	node.style.color = "rgb("
 		+ color[0]*255 + ","
 		+ color[1]*255 + ","
 		+ color[2]*255 + ")";
